@@ -120,19 +120,20 @@ Avec f = 72x10⁶.
    > Un registre SETENA ne couvre que 32 interruptions. Il y a donc SETENA0, SETENA1... Ainsi la 1ère interruption de SETENA1 est la 32ème du tableau NVIC.  
    
    SETENA doit être défini comme:  
-    - SETENA0 = *(volatile unsigned long *)0xE000E100
-    - SETENA1 = *(volatile unsigned long *)0xE000E104
-    - SETENA2 = *(volatile unsigned long *)0xE000E108...
+    - SETENA0 *(volatile unsigned long *)0xE000E100
+    - SETENA1 *(volatile unsigned long *)0xE000E104
+    - SETENA2 *(volatile unsigned long *)0xE000E108...
 3. Pour les TIMERS:
    1. Activer l'interruption du côté Timer: `TIMx_DIER |= (1 << 0);` 
         >x Désigne le numéro du Timer (entre 1 et 8)
 4. Pour les boutons:
-   1. Sélectionner la broche: `AFIO_EXTICRx = y;`
-        > x Désigne le numéro du registre (de 1 à 4). Chaque numéro de broche (0, 1, 2..., 15) sont associé à 4 bits dans ces registres. Ainsi, dans chaque partie de 4 bits, le **port** doit être sélectionné, allant de 0 (pour A) à 6 (pour G), cette valeur est y (au bon endroit). Par exemple, pour activer en E6 : `AFIO_EXTICR2 = 0x0400;`  
-        
-       AFIO_EXTICR doit être défini comme:
-          - AFIO_EXTICR4 *(volatile unsigned long *)0x40010014
-          - Aucune idée pour les autres, utilisez plutôt `AFIO->EXTICR[x-1] = AFIO_EXTICRx_EXTInbBroche_PcharPort;`, je crois ça marche.
+   1. [Activer le port](#activation-dun-port---rcc_apb2enr): RCC->APB2ENR |= (1 << 0); // Activer le port AFIOEN
+   2. Sélectionner la broche avec: `AFIO_EXTICRx = y;`
+        > x Désigne le numéro du registre (de 1 à 4). Chaque numéro de broche (0, 1, 2..., 15) sont associé à 4 bits dans ces registres. Ainsi, dans la partie de 4 bits associé au numéro de broche souhaité, le **port** doit être sélectionné, allant de 0 (pour A) à 6 (pour G), cette valeur est y (au bon endroit). Par exemple, pour activer en E6 : `AFIO_EXTICR2 = 0x0400;`. 2 Car dans le 2nd registre et 4 car le port E.
+
+        AFIO_EXTICR doit être défini comme:
+        - AFIO_EXTICR4 *(volatile unsigned long *)0x40010014
+        - Je ne sais pas pour les autres, je vous conseil donc: `AFIO->EXTICR[x-1]` (à vos risques et périls.)
     3. Détection de front montant ou descendant:
        1. Front montant: `EXTI->RTSR = (1 << numéroBroche)`
        2. Front descendant: `EXTI->FTSR = (1 << numéroBroche)`
