@@ -128,13 +128,17 @@ Avec f = 72x10⁶.
         >x Désigne le numéro du Timer (entre 1 et 8)
 4. Pour les boutons:
    1. Sélectionner la broche: `AFIO_EXTICRx = y;`
-        > x Désigne le numéro du registre (de 1 à 4). Chaque numéro de broche (0, 1, 2..., 15) sont associé à 4 bits dans ces registres. Ainsi, dans chaque partie de 4 bits, le **port** doit être sélectionné, allant de 0 (pour A) à 6 (pour G), cette valeur est y (au bon endroit). Par exemple, pour activer en E6 : `AFIO_EXTICR2 = 0x0400;`
-    2. Détection de front montant ou descendant:
+        > x Désigne le numéro du registre (de 1 à 4). Chaque numéro de broche (0, 1, 2..., 15) sont associé à 4 bits dans ces registres. Ainsi, dans chaque partie de 4 bits, le **port** doit être sélectionné, allant de 0 (pour A) à 6 (pour G), cette valeur est y (au bon endroit). Par exemple, pour activer en E6 : `AFIO_EXTICR2 = 0x0400;`  
+        
+       AFIO_EXTICR doit être défini comme:
+          - AFIO_EXTICR4 *(volatile unsigned long *)0x40010014
+          - Aucune idée pour les autres, utilisez plutôt `AFIO->EXTICR[x-1] = AFIO_EXTICRx_EXTInbBroche_PcharPort;`, je crois ça marche.
+    3. Détection de front montant ou descendant:
        1. Front montant: `EXTI->RTSR = (1 << numéroBroche)`
        2. Front descendant: `EXTI->FTSR = (1 << numéroBroche)`
-    3. Masque d'interruption: `EXTI->IMR = (1 << numéroBroche)` 
-    4. Etat de l'interruption: `valeur = EXTI->IMR & (1 << numéroBroche)`
-    5. Remettre l'interruption à **1**: `EXTI->PR |= numéroBroche;`
+    4. Masque d'interruption: `EXTI->IMR = (1 << numéroBroche)` 
+    5. Etat de l'interruption: `valeur = EXTI->IMR & (1 << numéroBroche)`
+    6. Remettre l'interruption à **1**: `EXTI->PR |= numéroBroche;`
         > Le numéro de broche est par exemple 13 pour TAMPER, 0 pour WAKEUP...
  5. Ecrire la fonction en retrouvant le nom dans le fichier de démarrage. Le numéro de la ligne dans ce fichier est le même que dans le NVIC.
         
