@@ -70,7 +70,7 @@ tels que les entêtes et/ou les acquittements)
 `telnet [adresse_ip] [port]
 `
 
-> Protocole de communication non sécurisé utilisé pour l'accès à distance à des systèmes. Les données sont transmises en texte clair. Utilisé en spécifiant l'adresse IP et le port du serveur mais pas sécurisé.
+> Protocole de communication non sécurisé utilisé pour l'accès à distance à des systèmes. Les données sont transmises en texte clair. Utilisé en spécifiant l'adresse IP et le port du serveur mais pas sécurisé. Permet des requêtes HTTP.
 
 ### SSH (Secure Shell)
 
@@ -158,3 +158,37 @@ Les codes de statut indiquent le résultat de la requête. Quelques exemples :
 | `ifconfig`    | `interface`                 | Afficher ou configurer les paramètres d'une interface réseau spécifié (ou toutes).    |
 | `traceroute`  | `-n`                        | Suivre l'itinéraire sans résoudre les adresses IP.        |
 | `netstat`     |  | Afficher les connexions et les statistiques réseau.        |
+
+
+## Serveur Web Apache2
+
+> Un serveur web est un logiciel qui répond aux demandes des navigateurs en fournissant des pages et des contenus via HTTP. Il facilite l'accès aux sites internet en agissant comme une interface entre les utilisateurs et les fichiers stockés sur le serveur.
+
+### Installation
+
+Sur Ubuntu/Debian :
+```bash
+sudo apt-get update
+sudo apt-get install apache2
+```
+
+### Fichiers de Configuration Principaux
+1. `/etc/apache2/apache2.conf` : Fichier principal de configuration d'Apache2. Il contient des directives globales pour le serveur.
+2. `/etc/apache2/sites-available/` : Répertoire contenant les fichiers de configuration des sites virtuels. Ces fichiers définissent la configuration spécifique à chaque site hébergé.
+3. `/etc/apache2/sites-enabled/` : Répertoire contenant des liens symboliques vers les fichiers de configuration des sites virtuels activés. Ces liens sont créés à partir de sites-available pour activer les sites.
+
+### Informations:
+- **Port par Défaut** : Apache2 écoute généralement sur le port 80 pour les requêtes HTTP et sur le port 443 pour les requêtes HTTPS.
+- **Répertoire Racine** : Le répertoire où sont stockés les fichiers du site web par défaut est /var/www/html/.
+- **Logs** : Les fichiers de journalisation se trouvent généralement dans le répertoire /var/log/apache2/.
+- **Sécurité** : Des directives telles que Allow, Deny, et Require sont utilisées pour contrôler l'accès aux ressources du serveur.
+
+### Principales Directives de Configuration
+- **`DocumentRoot` :** : Indique le répertoire racine des documents servis par Apache2.
+- **`Directory` :** : Définit les directives spécifiques au répertoire, telles que les autorisations et les options.
+- **`VirtualHost` :** : Permet la configuration de plusieurs sites sur le même serveur, chacun avec son propre ensemble de paramètres.
+- **`ServerName` :** Définit le nom d'hôte principal du serveur. Utile pour les configurations de virtual hosts.
+- **`ServerAdmin` :** Spécifie l'adresse e-mail de l'administrateur du serveur. Les messages d'erreur du serveur peuvent être envoyés à cette adresse.
+- **`ErrorLog` :** Indique le fichier de journal où les messages d'erreur du serveur sont enregistrés.
+- **`CustomLog` :** Spécifie le fichier de journal pour les accès au serveur. Il peut être configuré pour enregistrer différentes informations telles que les adresses IP, les requêtes, etc.
+- **`Directory` :** Permet de configurer des options spécifiques à un répertoire particulier.
