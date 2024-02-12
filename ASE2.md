@@ -70,14 +70,14 @@ Les 4 ports désignent son fonctionnement. 0100 (0x4) pour entrée et 0011 (0x3)
 
 1. [Activer le port](#activation-dun-port---rcc_apb2enr): `RCC->APB2ENR |= (1 << 3); // Activer le GPIOB`
 2. [Activer la broche](#activer-une-broche-dun-port---grpiox_crl--gpiox_crh-axg): `GPIOG->CRH = 0x00000300; //Activation de la broche 10 en sortie.`
-3. [Mettre l'état de la broche à 1](#ecrire-dans-un-port---gpiox_odr-axg): `GPIOB->ODR = 0x0400`;
-4. [ Pour éteindre, remettre à 0](#ecrire-dans-un-port---gpiox_odr-axg): `GPIOB->ODR = 0x0000`;
+3. [Mettre l'état de la broche à 1](#ecrire-dans-un-port---gpiox_odr-axg): `GPIOB->ODR |= (1 << 10)`;
+4. [ Pour éteindre, remettre à 0](#ecrire-dans-un-port---gpiox_odr-axg): `GPIOB->ODR &= ~(0  << 10)`;
 
 ## Utiliser un bouton (PD3 - Joystick bas):
 
 1. [Activer le port](#activation-dun-port---rcc_apb2enr): `RCC->APB2ENR |= (1 << 5); // Activer le GPIOD`
 2. [Activer la broche](#activer-une-broche-dun-port---grpiox_crl--gpiox_crh-axg): `GPIOD->CRL = 0x00004000; //Activation de la broche 3 en entrée.`
-3. [Lire l'état du bouton](#lire-un-port---gpiox_idr-axg): `bouton = GPIOD->IDR & 0x0004;`;
+3. [Lire l'état du bouton](#lire-un-port---gpiox_idr-axg): `bouton = GPIOD->IDR & (1 << 3);`;
 
 ## Utiliser un Timer (TIM8):
 
