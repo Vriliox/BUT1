@@ -81,10 +81,10 @@ Les 4 ports désignent son fonctionnement. 0100 (0x4) pour entrée et 0011 (0x3)
 
 ## Utiliser un Timer (TIM8):
 
-[STM32 Timer Calculator](https://deepbluembedded.com/stm32-timer-calculator/)
-$$
+[STM32 Timer Calculator](https://deepbluembedded.com/stm32-timer-calculator/)  
+```math
 temps = \frac{(PSC + 1) \times ARR}{f}
-$$
+```  
 Avec f = 72x10⁶.
 
 > L'auto reload définit jusqu'à combien compte le timer.  
