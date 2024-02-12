@@ -138,7 +138,7 @@ Avec f = 72x10⁶.
        1. Front montant: `EXTI->RTSR = (1 << numéroBroche)`
        2. Front descendant: `EXTI->FTSR = (1 << numéroBroche)`
     4. Masque d'interruption: `EXTI->IMR = (1 << numéroBroche)` 
-    5. Etat de l'interruption: `valeur = EXTI->IMR & (1 << numéroBroche)`
+    5. Etat de l'interruption: `valeur = EXTI->PR & (1 << numéroBroche)`
     6. Remettre l'interruption à **1**: `EXTI->PR |= numéroBroche;`
         > Le numéro de broche est par exemple 13 pour TAMPER, 0 pour WAKEUP...
  5. Ecrire la fonction en retrouvant le nom dans le fichier de démarrage. Le numéro de la ligne dans ce fichier est le même que dans le NVIC.
