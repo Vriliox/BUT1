@@ -1,16 +1,12 @@
 # Réseau - Résumé
 
-## Modèle OSI
-
-Le modèle OSI (Open Systems Interconnection) divise les communications en sept couches, chacune avec son propre rôle spécifique.
-
-1. **Couche Physique :** Transmission de bits sur le support physique.
+1. **Couche Physique :** Transmission de bits sur le support physique. Identifié avec l'adresse MAC
 2. **Couche Liaison de données :** Gestion des erreurs et du flux de données.
-3. **Couche Réseau :** Routage des données à travers le réseau.
-4. **Couche Transport :** Gestion du contrôle de flux et de la fiabilité de la transmission.
+3. **Couche Réseau :** Routage des données à travers le réseau. Identifié avec les addresses IP
+4. **Couche Transport :** Gestion du contrôle de flux et de la fiabilité de la transmission. Identifié avec le numero de port
 5. **Couche Session :** Établissement, gestion et fermeture des sessions de communication.
 6. **Couche Présentation :** Conversion des données entre le format réseau et l'application.
-7. **Couche Application :** Interface utilisateur et services d'application.
+7. **Couche Application :** Interface utilisateur et services d'application. Identifié avec le FQMN
 
 ## Protocoles Réseau
 
