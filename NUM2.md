@@ -48,9 +48,7 @@ Le raisonnement par récurrence est une méthode de démonstration mathématique
 - **Cas de base :** Vérifié pour $n = 1$.
 - **Hypothèse de récurrence :** Supposons vrai pour un $k$ quelconque.
 - **Étape de récurrence :** Démontrons pour $k + 1$.
-  $$
-  1 + 2 + \ldots + k + (k + 1) = \frac{k(k + 1)}{2} + (k + 1)
-  $$
+$$1 + 2 + \ldots + k + (k + 1) = \frac{k(k + 1)}{2} + (k + 1)$$
 - **Conclusion :** Par le principe de récurrence, la formule est vraie pour tous les entiers naturels \(n\).
 
 
@@ -61,9 +59,7 @@ L'interpolation polynomiale est une méthode mathématique qui consiste à const
 ### 1. Forme générale du Polynôme d'Interpolation de Lagrange :
 - Soit $x_0, x_1, \ldots, x_n$ les points d'interpolation avec des valeurs correspondantes $y_0, y_1, \ldots, y_n$.
 - Le polynôme d'interpolation de Lagrange est donné par la formule :
-  $$
-  P(x) = \sum_{i=0}^{n} y_i \prod_{j=0, j \neq i}^{n} \frac{x - x_j}{x_i - x_j}
-  $$
+$$P(x) = \sum_{i=0}^{n} y_i \prod_{j=0, j \neq i}^{n} \frac{x - x_j}{x_i - x_j}$$
 
 ### 2. Idée Intuitive :
 - Chaque terme dans la somme contribue avec le produit de termes de la forme $\frac{x - x_j}{x_i - x_j}$, où $i$ varie de $0$ à $n$.
@@ -72,16 +68,12 @@ L'interpolation polynomiale est une méthode mathématique qui consiste à const
 ### 3. Exemple :
 - **Points d'Interpolation :** $(x_0, y_0), (x_1, y_1), \ldots, (x_n, y_n)$
 - **Polynôme d'Interpolation de Lagrange :**
-  $$
-  P(x) = L_0(x) y_0 + L_1(x) y_1 + \ldots + L_n(x) y_n
-  $$
+$$P(x) = L_0(x) y_0 + L_1(x) y_1 + \ldots + L_n(x) y_n$$
   Où les $L_i(x)$ sont les polynômes de Lagrange associés aux points d'interpolation.
 
 ### 4. Polynômes de Lagrange :
 - Les polynômes de Lagrange $L_i(x)$ sont définis par :
-  $$
-  L_i(x) = \prod_{j=0, j \neq i}^{n} \frac{x - x_j}{x_i - x_j}
-  $$
+$$L_i(x) = \prod_{j=0, j \neq i}^{n} \frac{x - x_j}{x_i - x_j}$$
 
 ### 5. Avantages et Limitations :
 - **Avantages :** Le polynôme d'interpolation de Lagrange est simple à comprendre et à implémenter.
@@ -105,9 +97,7 @@ Considérons l'équation non linéaire $f(x) = 0$ où $f$ est une fonction réel
   3. **Sélection du sous-intervalle :** Choisir le sous-intervalle où la fonction change de signe et répéter.
 
   Formellement, l'itération de la dichotomie est donnée par :
-  $$
-  c_n = \frac{a_n + b_n}{2}, \quad \text{si } f(a_n) \cdot f(c_n) < 0 \text{ alors } b_{n+1} = c_n \text{, sinon } a_{n+1} = c_n
-  $$
+$$c_n = \frac{a_n + b_n}{2}, \quad \text{si } f(a_n) \cdot f(c_n) < 0 \text{ alors } b_{n+1} c_n \text{, sinon } a_{n+1} = c_n$$
   
 - **Comparaison :**
   - *Avantages :* Simple, converge de manière garantie, applicable même lorsque la fonction n'est pas dérivable.
@@ -120,15 +110,11 @@ Considérons l'équation non linéaire $f(x) = 0$ où $f$ est une fonction réel
 - **Principe Mathématique :**
   1. **Choix de l'estimation initiale :** Sélectionner $x_0$.
   2. **Itération :** Calculer la prochaine approximation à l'aide de la formule de récurrence :
-     $$
-     x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
-     $$
+$$x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$$
   3. **Répétition :** Répéter jusqu'à ce que la tolérance prédéfinie soit atteinte.
 
   La formule itérative de la méthode de Newton est donnée par :
-  $$
-  x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
-  $$
+$$x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$$
   
 - **Comparaison :**
   - *Avantages :* Convergence rapide avec une bonne estimation initiale, efficace pour les fonctions bien comportées.
@@ -141,8 +127,11 @@ Considérons l'équation non linéaire $f(x) = 0$ où $f$ est une fonction réel
 
 ### Critères d'Arrêt :
 
-1. **Tolérance Absolue :** Arrêter l'algorithme lorsque la différence entre deux itérations successives est inférieure à une valeur seuil prédéfinie. $$|x_{n+1} - x_n| < \epsilon$$
-2. **Tolérance Relative :** Arrêter l'algorithme lorsque la différence relative entre deux itérations successives est inférieure à une valeur seuil prédéfinie. $$\frac{|x_{n+1} - x_n|}{|x_{n+1}|} < \epsilon$$
-3. **Nombre Maximum d'itérations :** Limiter le nombre d'itérations pour éviter une exécution indéfinie. $$n > n_{\text{max}}$$
+1. **Tolérance Absolue :** Arrêter l'algorithme lorsque la différence entre deux itérations successives est inférieure à une valeur seuil prédéfinie. 
+$$|x_{n+1} - x_n| < \epsilon$$
+2. **Tolérance Relative :** Arrêter l'algorithme lorsque la différence relative entre deux itérations successives est inférieure à une valeur seuil prédéfinie. 
+$$\frac{|x_{n+1} - x_n|}{|x_{n+1}|} < \epsilon$$
+1. **Nombre Maximum d'itérations :** Limiter le nombre d'itérations pour éviter une exécution indéfinie. 
+$$n > n_{\text{max}}$$
 
 Le choix entre ces méthodes dépend du problème spécifique, de la nature de la fonction, et des connaissances préalables sur la solution attendue.
