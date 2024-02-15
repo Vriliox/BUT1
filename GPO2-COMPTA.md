@@ -35,12 +35,19 @@ Chaque flux est justifié (factures, chèques, virements, prélèvements...)
 
 ## Exemple de journal (compte 411)
 
-| Date       | Libellé                       | Débit (€)  | Crédit (€)  |
-|------------|-------------------------------|------------|-------------|
-| 2023-01-01 | Vente de produits             |            | 1,000       |
-| 2023-01-05 | Paiement partiel par le client| 500        |             |
-| 2023-01-15 | Nouvelle vente                |            | 800         |
-| 2023-02-03 | Paiement intégral par le client| 1,300      |             |
+| Date       | Compte | Libellé                       | Débit (€)  | Crédit (€)  |
+|------------|--------|-------------------------------|------------|-------------|
+| 01-01-2024 | 707    | Vente de produits (paiement diff)|            | 3000       |
+| 01-01-2024 | 411    | Dette du client               | 3000        |             |
+|------------|--------|-------------------------------|------------|-------------|
+| 03-01-2024 | 607    | Achat de marchandise (paiement diff)| 1500 |          |
+| 03-01-2024 | 401    | Dette au fournisseur |       |   1500  |
+|------------|--------|-------------------------------|------------|-------------|
+| 06-01-2024 | 512    | Paiement intégral par le client| 3000      |             |
+| 06-01-2024 | 411    | Annulation dette client            |            | 3000         |
+|------------|--------|-------------------------------|------------|-------------|
+| 12-01-2024 | 512    | Réglement marchandise (Banque)|         |  1500     |
+| 12-01-2024 | 401    | Annulation de la dette au fournisseur | 1500   |     |
 
 ### Exemples de compte en T
 
@@ -52,6 +59,8 @@ Chaque flux est justifié (factures, chèques, virements, prélèvements...)
 
 ### Exemple de balance
 
+> La balance se fait après le calcul des soldes débitaires et soldes créditaires des comptes.
+
 > [!WARNING]
 > La somme des débits et crédits doit s'équilibrer
 
@@ -59,7 +68,7 @@ Chaque flux est justifié (factures, chèques, virements, prélèvements...)
 | Compte          | Libellé                                      | Débit (€)  | Crédit (€)  |
 |-----------------|----------------------------------------------|------------|-------------|
 | 101 - Capital   | Capital social                               |            | 10,000      |
-| 401 - Fournisseurs | Dettes envers les fournisseurs              | 5,000      |             |
+| 401 - Fournisseurs | Dettes envers les fournisseurs             | 5,000      |             |
 | 411 - Clients    | Créances envers les clients                  |            | 3,000       |
 | 512 - Banque     | Mouvements d'argent sur le compte bancaire   | 15,000     |             |
 | 607 - Achats      | Coût d'achat des marchandises               | 4,000      |             |
