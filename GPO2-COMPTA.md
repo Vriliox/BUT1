@@ -33,7 +33,7 @@ Chaque flux est justifié (factures, chèques, virements, prélèvements...)
 | 7      | Comptes de produits               |        |                                               |
 |        |                                   | 707    | Ventes de produits finis                      |
 
-## Exemple de journal (compte 411)
+## Exemple de journal
 
 | Date       | Compte | Libellé                       | Débit (€)  | Crédit (€)  |
 |------------|--------|-------------------------------|------------|-------------|
