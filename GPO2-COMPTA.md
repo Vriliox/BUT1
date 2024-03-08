@@ -24,42 +24,38 @@ Chaque flux est justifié (factures, chèques, virements, prélèvements...)
 | 2      | Comptes d'immobilisations         |        |                                               |
 | 3      | Comptes de stocks et en-cours     |        |                                               |
 | 4      | Comptes de tiers                  |        |                                               |
-|        |                                   | 411    | Créances envers les clients                   |
-|        |                                   | 401    | Dettes envers les fournisseurs                |
+|        |                                   | 411    | Créances envers les **clients**                   |
+|        |                                   | 401    | Dettes envers les **fournisseurs**                |
 | 5      | Comptes financiers                |        |                                               |
-|        |                                   | 512    | Mouvements d'argent sur le compte bancaire    |
+|        |                                   | 512    | Mouvements d'argent sur le compte **bancaire**    |
 | 6      | Comptes de charges                |        |                                               |
-|        |                                   | 607    | Achat des marchandises                        |
+|        |                                   | 607    | **Achat** des marchandises                        |
 | 7      | Comptes de produits               |        |                                               |
-|        |                                   | 707    | Ventes de produits finis                      |
+|        |                                   | 707    | **Ventes** de produits finis                      |
 
-## Exemple de journal
+> [!NOTE]  
+> Les comptes 600 en débit.  
+> Les comptes 700 en crédit.
 
-| Date       | Compte | Libellé                       | Débit (€)  | Crédit (€)  |
-|------------|--------|-------------------------------|------------|-------------|
-| 01-01-2024 | 707    | Vente de produits (paiement diff)|            | 3000       |
-| 01-01-2024 | 411    | Dette du client               | 3000        |             |
-|------------|--------|-------------------------------|------------|-------------|
-| 03-01-2024 | 607    | Achat de marchandise (paiement diff)| 1500 |          |
-| 03-01-2024 | 401    | Dette au fournisseur |       |   1500  |
-|------------|--------|-------------------------------|------------|-------------|
-| 06-01-2024 | 512    | Paiement intégral par le client| 3000      |             |
-| 06-01-2024 | 411    | Annulation dette client            |            | 3000         |
-|------------|--------|-------------------------------|------------|-------------|
-| 12-01-2024 | 512    | Réglement marchandise (Banque)|         |  1500     |
-| 12-01-2024 | 401    | Annulation de la dette au fournisseur | 1500   |     |
+## Exemple de journal (compte 411)
+
+| Date       | Libellé                       | Débit (€)  | Crédit (€)  |
+|------------|-------------------------------|------------|-------------|
+| 2023-01-01 | Vente de produits             |            | 1,000       |
+| 2023-01-05 | Paiement partiel par le client| 500        |             |
+| 2023-01-15 | Nouvelle vente                |            | 800         |
+| 2023-02-03 | Paiement intégral par le client| 1,300      |             |
 
 ### Exemples de compte en T
 
 > [!NOTE]
 > Débit à gauche  
-> Crédit à droite.
+> Crédit à droite.  
+> Débit commence par un D, comme Droite, donc c'est à gauche.
 
 <img src="https://www.cactus-compta.fr/img/operation-compte-T.png" alt="logo-markdown" width=500px />
 
 ### Exemple de balance
-
-> La balance se fait après le calcul des soldes débitaires et soldes créditaires des comptes.
 
 > [!WARNING]
 > La somme des débits et crédits doit s'équilibrer
@@ -68,9 +64,28 @@ Chaque flux est justifié (factures, chèques, virements, prélèvements...)
 | Compte          | Libellé                                      | Débit (€)  | Crédit (€)  |
 |-----------------|----------------------------------------------|------------|-------------|
 | 101 - Capital   | Capital social                               |            | 10,000      |
-| 401 - Fournisseurs | Dettes envers les fournisseurs             | 5,000      |             |
+| 401 - Fournisseurs | Dettes envers les fournisseurs              | 5,000      |             |
 | 411 - Clients    | Créances envers les clients                  |            | 3,000       |
 | 512 - Banque     | Mouvements d'argent sur le compte bancaire   | 15,000     |             |
 | 607 - Achats      | Coût d'achat des marchandises               | 4,000      |             |
 | 707 - Ventes      | Revenus des ventes de produits finis        |            | 11,000      |
 | **Total**        |                                             | **24,000** | **24,000**  |
+
+## Compte de résultats
+
+> [!INFO]
+>Charges et produits sur une période donnée (HT). Il permet d’apprécier la rentabilité et la performance d’une société.
+
+> [!WARNING]
+> Pas d’investissement, de règlements, de dettes, de créances et de trésorie, c’est le rôle du bilan
+
+- **Produits:** Revenus des ventes, débit
+- **Charges:** Ensemble des achats, crédit (elec, eau, poubelle, taxes, impôts, location…)
+- 3 catégories: Exploitation, financier et exceptionnel. Chaque catégorie donne un résultat intermédiaire.
+	- Résultat d’exploitation + Résultat financier = Résultat courant avant impôts
+	- + Résultat exceptionnel - participations et impôts = Résultat.
+
+Le résultat final: $=produits-charges$. Bénéfice si résultat positif, perte si négatif. 
+
+$$Ratio rentabilité = \frac{Resultat}{CA HT}$$
+
