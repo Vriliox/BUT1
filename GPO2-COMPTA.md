@@ -73,7 +73,7 @@ Chaque flux est justifié (factures, chèques, virements, prélèvements...)
 
 ## Compte de résultats
 
-> [!INFO]
+> [!NOTE]
 >Charges et produits sur une période donnée (HT). Il permet d’apprécier la rentabilité et la performance d’une société.
 
 > [!WARNING]
@@ -83,9 +83,56 @@ Chaque flux est justifié (factures, chèques, virements, prélèvements...)
 - **Charges:** Ensemble des achats, crédit (elec, eau, poubelle, taxes, impôts, location…)
 - 3 catégories: Exploitation, financier et exceptionnel. Chaque catégorie donne un résultat intermédiaire.
 	- Résultat d’exploitation + Résultat financier = Résultat courant avant impôts
-	- + Résultat exceptionnel - participations et impôts = Résultat.
+	- et + le Résultat exceptionnel - participations et impôts = Résultat.
 
-Le résultat final: $=produits-charges$. Bénéfice si résultat positif, perte si négatif. 
+Le $résultat=produits-charges$. Bénéfice si résultat positif, perte si négatif. 
 
 $$Ratio rentabilité = \frac{Resultat}{CA HT}$$
 
+$$Taux évolution = \frac{(valeur arrivée)-(valeur départ)}{valeur départ} *100$$
+
+<img src="https://www.comprendrelacompta.com/wp-content/uploads/2020/09/compte-de-resultat-4.png" alt="Compte de résultat" width="750px">
+
+## Le bilan 
+
+> [!NOTE]
+> Le patrimoine de l'entreprise à un instant t. Permet de vérifier que les ressources sont adapatés aux besoins de l'entrprise.
+> - **Actif**: Les immobilisations (Bâtiment, voiture...), les stocks, les créances des clients.
+> - **Passif**: Capitaux propres, dettes.  
+> 
+> **Ils sont égaux**
+
+[![alt text](https://vriliox.fr/images/Bilan.png)]
+
+## Bilan Fonctionnel
+
+> [!IMPORTANT]
+> Actif --> Emploi  
+> Passif --> Ressources  
+> Bilan dans lequel les emplois et ressources sont établis par fonctions.  
+> Permet d'établir **l'équilibre financier** de l'entreprise.
+
+![alt text](https://vriliox.fr/images/BilanFonctionnel.png)
+
+$$FRNG = Ressources Stables - Emplois Stables$$ 
+Il doit être **positif**. Il défini la capacité des ressources à couvrir les investissements à long terme.
+
+$$BFR = Actif Circulant - Passif Circulant$$
+Il doit être le plus **faible**. Différence entre l'encaissement des créances clients et des paiements de fournisseurs. S'il est positif, l'entreprise doit piocher dans le long (FRNG).
+
+$$TN = Trésorie Active - Trésorie Passive$$
+$$TN = FRNG - BFR$$
+
+Il se doit d'être **positif**, ou l'entreprise est à découvert pour financer le BFR. Les fonds disponible immédiatement, moins les découverts.
+
+> [!TIP]
+> Comment faire augmenter la Trésorie Nette (TN) ?
+> - Augmenter le FRNG:
+> 	- En augmentant les ressources stables (Emprunts long terme, le capital...)
+> 	- En baissant les emplois stables (Cessions d'immobilisations)
+> - Baissant le BFR:
+> 	- En augmentant le Passif Circulant (Allonger les crédits, des dettes court termes.)
+> 	- En baissant l'Actif Circulant (Stocks, les créances des clients, raccourcissant les crédits accordés)
+
+Résumé:
+![alt text](https://vriliox.fr/images/FRNGBFRTN.png)
