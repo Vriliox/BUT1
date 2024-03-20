@@ -124,7 +124,7 @@ Avec f = 72x10⁶.
     - SETENA1 *(volatile unsigned long *)0xE000E104
     - SETENA2 *(volatile unsigned long *)0xE000E108...
 3. Pour les TIMERS:
-   1. Activer l'interruption du côté Timer: `TIMx_DIER |= (1 << 0);` 
+   1. Activer l'interruption du côté Timer: `TIMx->DIER |= (1 << 0);` 
         >x Désigne le numéro du Timer (entre 1 et 8)
 4. Pour les boutons:
    1. [Activer le port](#activation-dun-port---rcc_apb2enr): RCC->APB2ENR |= (1 << 0); // Activer le port AFIOEN
@@ -133,7 +133,7 @@ Avec f = 72x10⁶.
 
         AFIO_EXTICR doit être défini comme:
         - AFIO_EXTICR4 *(volatile unsigned long *)0x40010014
-        - Je ne sais pas pour les autres, je vous conseil donc: `AFIO->EXTICR[x-1]` (à vos risques et périls.)
+        - Je ne sais pas pour les autres, je vous conseil donc d'utiliser: `AFIO->EXTICR[x-1]`
     3. Détection de front montant ou descendant:
        1. Front montant: `EXTI->RTSR = (1 << numéroBroche)`
        2. Front descendant: `EXTI->FTSR = (1 << numéroBroche)`
