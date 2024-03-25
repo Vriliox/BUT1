@@ -1,12 +1,16 @@
 # Réseau - Résumé
 
-1. **Couche Physique :** Transmission de bits sur le support physique. Identifié avec l'adresse MAC
+## Modèle OSI
+
+Le modèle OSI (Open Systems Interconnection) divise les communications en sept couches, chacune avec son propre rôle spécifique.
+
+1. **Couche Physique :** Transmission de bits sur le support physique.
 2. **Couche Liaison de données :** Gestion des erreurs et du flux de données.
-3. **Couche Réseau :** Routage des données à travers le réseau. Identifié avec les addresses IP
-4. **Couche Transport :** Gestion du contrôle de flux et de la fiabilité de la transmission. Identifié avec le numero de port
+3. **Couche Réseau :** Routage des données à travers le réseau.
+4. **Couche Transport :** Gestion du contrôle de flux et de la fiabilité de la transmission.
 5. **Couche Session :** Établissement, gestion et fermeture des sessions de communication.
 6. **Couche Présentation :** Conversion des données entre le format réseau et l'application.
-7. **Couche Application :** Interface utilisateur et services d'application. Identifié avec le FQMN
+7. **Couche Application :** Interface utilisateur et services d'application.
 
 ## Protocoles Réseau
 
@@ -188,3 +192,74 @@ sudo apt-get install apache2
 - **`ErrorLog` :** Indique le fichier de journal où les messages d'erreur du serveur sont enregistrés.
 - **`CustomLog` :** Spécifie le fichier de journal pour les accès au serveur. Il peut être configuré pour enregistrer différentes informations telles que les adresses IP, les requêtes, etc.
 - **`Directory` :** Permet de configurer des options spécifiques à un répertoire particulier.
+
+## Modèle en Couches et Analyses de Trame
+
+### Modèle en Couches
+
+Le modèle en couches divise les fonctionnalités de communication en différentes couches chacune responsable d'une tâche spécifique, ce qui facilite la conception, le développement et le dépannage des réseaux. Les principaux modèles en couches comprennent :
+
+- **Modèle OSI (Open Systems Interconnection) :** Divise les fonctionnalités réseau en sept couches, de la couche physique à la couche application.
+
+- **Modèle TCP/IP :** Plus communément utilisé, il se compose de quatre couches : la couche d'accès réseau, la couche Internet, la couche transport et la couche application.
+
+![OSI vs TCP/IP](https://www.guru99.com/images/1/102219_1135_TCPIPvsOSIM1.png)
+
+### Protocoles Courants
+
+- **HTTP (Hypertext Transfer Protocol) :** Utilisé pour le transfert de pages web et d'autres ressources sur Internet.
+
+- **TCP (Transmission Control Protocol) :** Protocole de transport fiable utilisé pour établir des connexions et garantir la livraison des données.
+
+- **IP (Internet Protocol) :** Protocole de la couche Internet responsable du routage des paquets entre les hôtes sur un réseau.
+
+- **DNS (Domain Name System) :** Convertit les noms de domaine en adresses IP pour permettre la résolution d'adresses.
+
+- **Ethernet :** Protocole de la couche d'accès réseau utilisé pour la transmission de données sur un réseau local.
+
+- **ARP (Address Resolution Protocol) :** Protocole de résolution d'adresses utilisé pour associer une adresse IP à une adresse MAC.
+
+- **ICMP (Internet Control Message Protocol) :** Protocole utilisé pour envoyer des messages de contrôle et de diagnostic entre les hôtes IP.
+
+- **FTP (File Transfer Protocol) :** Protocole utilisé pour le transfert de fichiers entre un client et un serveur sur un réseau TCP/IP.
+
+- **SSH (Secure Shell) :** Protocole sécurisé pour l'accès à distance et le transfert de fichiers sur un réseau.
+
+- **Telnet :** Protocole de communication non sécurisé utilisé pour l'accès à distance à des systèmes.
+
+### Analyses de Trame
+
+Les analyses de trame sont utilisées pour inspecter le trafic réseau et diagnostiquer les problèmes. Les outils d'analyse de trame tels que Wireshark permettent d'intercepter, d'examiner et d'enregistrer le trafic réseau pour identifier les anomalies, les erreurs de configuration et les attaques potentielles. Les analyses de trame peuvent fournir des informations détaillées sur les protocoles utilisés, les adresses source et de destination, les données transmises et d'autres métadonnées réseau.
+
+## Adressage et Routage IP
+
+> [!NOTE]
+>Dans un réseau, les informations circulent entre les différents appareils. Lorsqu'un périphérique, envoie des données vers un autre périphérique, les données sont encapsulées dans des trames qui contiennent à la fois l'adresse IP de destination et l'adresse MAC de destination. Ces trames sont ensuite transmises via le réseau, en passant par les commutateurs, les routeurs et autres appareils réseau, jusqu'à atteindre le périphérique de destination. À chaque étape, les appareils réseau utilisent les adresses MAC pour acheminer les trames au bon périphérique sur le réseau local, tandis que les adresses IP sont utilisées pour le routage entre les réseaux.
+
+### Adressage IP
+
+L'adressage IP est un système de numérotation utilisé pour identifier chaque périphérique connecté à un réseau TCP/IP. 
+
+|Classe|	Plage d'adresses|	Adresse réseau|	Adresse hôte	|Masque de sous-réseau par défaut	|Plage d'adresses privées	|Masque de sous-réseau privé
+|-|-|-|-|-|-|-|
+A|	1.0.0.1 à 126.255.255.254 Premier octet (1 à 126)| Trois derniers octets (0 à 255)| 255.0.0.0|	10.0.0.0 à 10.255.255.255|	255.0.0.0
+B|	128.0.0.1 à 191.255.255.254	Deux premiers octets (128 à 191)|	Deux derniers octets (0 à 255)|	255.255.0.0|	172.16.0.0 à 172.31.255.255|	255.240.0.0
+C|	192.0.0.1 à 223.255.255.254	Trois premiers octets (192 à 223)|	Dernier octet (0 à 255)|	255.255.255.0|	192.168.0.0 à 192.168.255.255|	255.255.255.0
+D|	224.0.0.0 à 239.255.255.255|	-|	-|	-|	-|	-|
+E|	240.0.0.0 à 255.255.255.254|	-|	-|	-|	-|	-|
+
+## Routage IP
+
+- **Table de Routage :** Une table utilisée par les routeurs pour déterminer le chemin optimal vers une destination donnée. Elle contient des informations sur les réseaux voisins et les chemins vers les destinations distantes.
+
+## Utilité de l'Adresse MAC par Rapport à l'Adresse IP
+
+> L'adresse MAC (Media Access Control) est une adresse physique unique attribuée à chaque carte réseau. Elle est utilisée pour identifier de manière unique les périphériques sur le réseau local. Lorsque des données sont envoyées sur le réseau local, les commutateurs utilisent les adresses MAC pour acheminer les trames vers le périphérique de destination. L'adresse IP, en revanche, est utilisée pour acheminer les données entre les réseaux et identifier de manière unique chaque périphérique sur Internet.
+
+## Sous-Réseaux et Masques de Sous-Réseau
+
+Les sous-réseaux permettent de diviser un réseau IP en segments plus petits pour une gestion et une organisation efficaces. Les masques de sous-réseau sont utilisés pour déterminer quels bits d'une adresse IP appartiennent à l'adresse du réseau et quels bits identifient des hôtes spécifiques sur ce réseau.
+
+- **Masque de Sous-Réseau :** Une série de bits utilisée pour déterminer les parties de l'adresse IP qui représentent le réseau et les parties qui représentent les hôtes.
+
+- **CIDR (Classless Inter-Domain Routing) :** Une méthode d'adressage IP qui permet une allocation plus efficace des adresses IP en utilisant des préfixes de réseau de longueur variable.
