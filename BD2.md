@@ -203,3 +203,129 @@ SELECT column1
 FROM table1
 WHERE column2 > ANY (SELECT column2 FROM table2 WHERE condition);
 ```
+
+## Algèbre d'interval
+
+### Types de Données Temporelles dans SQL Oracle
+
+#### DATE
+Le type DATE stocke les éléments suivants : siècle, année, mois, jour, heure, minute et seconde. 
+
+> Définir le format de date
+```sql
+ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS';
+ALTER SESSION SET NLS_DATE_LANGUAGE = 'FRENCH'; -- Définit la langueZ
+```
+
+#### TIMESTAMP
+Le type TIMESTAMP stocke les éléments suivants : siècle, année, mois, jour, heure, minute, seconde **et fraction de seconde.**
+
+> Définir le format de timestamp
+```sql
+ALTER SESSION SET NLS_TIMESTAMP_FORMAT = 'YYYY-MM-DD HH24:MI:SS.FF6';
+```
+
+#### TIMESTAMP WITH TIME ZONE
+Le type TIMESTAMP WITH TIME ZONE stocke un timestamp ainsi que le fuseau horaire.
+
+> Définir le format de timestamp
+```sql
+ALTER SESSION SET NLS_TIMESTAMP_TZ_FORMAT = 'YYYY-MM-DD HH24:MI:SS.FF6 TZR';
+ALTER SESSION SET TIME_ZONE = "America/Los_Angeles";
+```
+
+#### TIMESTAMP WITH LOCAL TIME ZONE
+Le type TIMESTAMP WITH LOCAL TIME ZONE stocke un timestamp ainsi que le fuseau horaire local de la session.
+
+### Interval
+
+#### INTERVAL YEAR TO MONTH :
+Représente un écart de temps entre deux dates en termes d'années et de mois.
+
+Exemple:
+```sql
+SELECT SYSDATE, SYSDATE + INTERVAL '1' YEAR FROM DUAL; -- Ajoute 1 an à la date actuelle
+```
+
+```sql
+SELECT (DATE_COL1 - DATE_COL2) YEAR TO MONTH AS DIFFERENCE FROM TABLE_NAME; -- Calculer la différence entre deux dates
+```
+
+#### INTERVAL DAY TO SECOND :
+Représente un écart de temps entre deux dates en termes de jours, heures, minutes, secondes et fractions de seconde.
+
+```sql
+SELECT SYSDATE, SYSDATE + INTERVAL '5' DAY + INTERVAL '3' HOUR + INTERVAL '20' MINUTE + INTERVAL '15' SECOND FROM DUAL;
+```
+
+```sql
+SELECT * FROM TABLE_NAME WHERE (DATE_COL1 - DATE_COL2) DAY TO SECOND > INTERVAL '1' DAY; -- Utilisation dans le WHERE
+```
+
+### Pour Trunc, Round et Extract
+
+| Format | Description                                           |
+|--------|-------------------------------------------------------|
+| MI     | Minute                                                |
+| MM     | Mois (chiffres)                                       |
+| W      | Numéro de semaine de l'année (1-53)                   |
+| WW     | Numéro de semaine de l'année (01-53)                  |
+| Q      | Trimestre (1-4)                                       |
+| YY     | Année (2 chiffres)                                    |
+| CC     | Siècle (2 premiers chiffres de l'année)               |
+| DD     | Jour du mois (01-31)                                  |
+| D      | Jour de la semaine (1-7)                              |
+
+Exemples:
+```sql
+SELECT TRUNC(TO_DATE('2023-09-15', 'YYYY-MM-DD'), 'Q') AS TRUNCATED_DATE FROM DUAL; -- Tronquer une date au trimestre
+
+SELECT ROUND(TO_DATE('2023-09-15', 'YYYY-MM-DD'), 'D') AS ROUNDED_DATE FROM DUAL; -- Arrondir une date au jour
+
+SELECT EXTRACT(DAY FROM TO_DATE('2023-09-15', 'YYYY-MM-DD')) FROM DUAL; -- Extraire le jour
+```
+
+## Les Vues
+
+> Les vues sont des objets de base de données virtuels qui permettent de présenter les données d'une ou plusieurs tables d'une manière spécifique. Elles agissent comme des tables virtuelles, offrant une vue personnalisée des données stockées dans la base de données.
+
+### Création
+
+```sql
+CREATE VIEW my_view AS
+SELECT column1, column2
+FROM my_table
+WHERE condition;
+```
+
+### Utilisation 
+
+```sql
+SELECT * FROM my_view;
+```
+
+### Suppression 
+
+```sql
+DROP VIEW my_view;
+```
+
+### Mise à jour des données
+
+```sql
+UPDATE my_view
+SET column1 = 'valeur_mise_à_jour'
+WHERE condition;
+```
+
+> [!WARNING]
+> La précense de ces éléments empèche la mise à jour:
+> - DISTINCT  
+> - AVG, COUNT, MAX, MIN, SUM...
+> - UNION, UNION ALL, INTERSECT, MINUS
+> - GROUP BY, HAVING
+> - START WITH, CONNECT BY
+> - ROWNUM 
+>  
+> De plus, la modification doit être possible dans le(s) table(s) de base.
+
